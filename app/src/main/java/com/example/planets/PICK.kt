@@ -3,10 +3,7 @@ package com.example.planets
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -123,10 +120,11 @@ fun PICK() {
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
-                items(pList){p: String ->
+                itemsIndexed(pList){index, item->
                     PickerText(
-                        text = p,
-                        current = pList[layoutInfo.currentItem?.index ?: 0]
+                        text = item,
+                        current = layoutInfo.currentItem?.index,
+                        index = index
                     )
                 }
             }

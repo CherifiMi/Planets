@@ -21,9 +21,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun PickerText (
     text: String,
-    current: String?
+    current: Int?,
+    index: Int
 ){
-    val isHere = current == text && text.isNotBlank()
+    val isHere = current == index && text.isNotBlank()
 
     val textSize = remember {
         Animatable(
