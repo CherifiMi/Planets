@@ -157,6 +157,13 @@ fun PICK() {
                     )
                 }
             }
+            Column(
+                Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Image(painter = painterResource(id = R.drawable.shadow_btm), contentDescription = "")
+                Image(painter = painterResource(id = R.drawable.shadow_top), modifier = Modifier.offset(y = 2.dp), contentDescription = "")
+            }
         }
         //_________
         Row(
