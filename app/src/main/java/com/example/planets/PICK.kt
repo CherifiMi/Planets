@@ -1,15 +1,17 @@
 package com.example.planets
 
-import android.graphics.drawable.shapes.Shape
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,8 +20,17 @@ import androidx.compose.ui.unit.sp
 import com.example.planets.ui.theme.Back
 import com.example.planets.ui.theme.Orange
 import com.example.planets.ui.theme.PlanetsTheme
+import dev.chrisbanes.snapper.ExperimentalSnapperApi
+import dev.chrisbanes.snapper.LazyListSnapperLayoutInfo
+import dev.chrisbanes.snapper.rememberLazyListSnapperLayoutInfo
+import dev.chrisbanes.snapper.rememberSnapperFlingBehavior
 
 val pList = listOf(
+    "",
+    "",
+    "",
+    "",
+    "",
     "MERCURY",
     "VENUS",
     "EARTH",
@@ -27,7 +38,12 @@ val pList = listOf(
     "JUPITER",
     "SATURN",
     "URANUS",
-    "NEPTUNE"
+    "NEPTUNE",
+    "",
+    "",
+    "",
+    "",
+    ""
 )
 
 @Composable
@@ -43,8 +59,15 @@ fun Pre() {
     }
 }
 
+@OptIn(ExperimentalSnapperApi::class)
 @Composable
 fun PICK() {
+    //_______________values
+    val lazyListState: LazyListState = rememberLazyListState()
+    val layoutInfo: LazyListSnapperLayoutInfo = rememberLazyListSnapperLayoutInfo(lazyListState)
+
+
+    //_________________funs
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -92,12 +115,20 @@ fun PICK() {
                 .height(650.dp),
             contentAlignment = Alignment.Center
         ) {
-            Column(
+            LazyColumn(
                 modifier = Modifier
-                    .fillMaxSize()
-
+                    .fillMaxSize(),
+                state = lazyListState,
+                flingBehavior = rememberSnapperFlingBehavior(lazyListState),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Center
             ) {
-
+                items(pList){p: String ->
+                    PickerText(
+                        text = p,
+                        current = pList[layoutInfo.currentItem?.index ?: 0]
+                    )
+                }
             }
             Box(
                 contentAlignment = Alignment.CenterEnd,
