@@ -1,8 +1,10 @@
 package com.example.planets
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -15,20 +17,21 @@ import androidx.compose.ui.unit.TextUnitType.Companion.Sp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.planets.ui.theme.Orange
+import dev.chrisbanes.snapper.SnapperLayoutItemInfo
 import kotlinx.coroutines.launch
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun PickerText (
     text: String,
-    current: Int?,
+    current: SnapperLayoutItemInfo?,
     index: Int
 ){
-    val isHere = current == index && text.isNotBlank()
+    val isHere = current?.index == index
 
     val textSize = remember {
         Animatable(
-            if (isHere) 28f else 18f
+            if (isHere) 28f else 17f
         )
     }
 
@@ -44,7 +47,7 @@ fun PickerText (
     }
     val textStart = remember {
         Animatable(
-            if (isHere) 80f else 96f
+            if (isHere) 72f else 88f
         )
     }
 
@@ -54,13 +57,13 @@ fun PickerText (
         textSpacing.animateTo(targetValue = if (isHere) 4f else 2f, animationSpec = tween(durationMillis = 50))
     }
     scope.launch {
-        textSize.animateTo(targetValue = if (isHere) 28f else 18f, animationSpec = tween(durationMillis = 50))
+        textSize.animateTo(targetValue = if (isHere) 28f else 17f, animationSpec = tween(durationMillis = 50))
     }
     scope.launch {
         textVer.animateTo(targetValue = if (isHere) 32f else 16f, animationSpec = tween(durationMillis = 50))
     }
     scope.launch {
-        textStart.animateTo(targetValue = if (isHere) 80f else 96f, animationSpec = tween(durationMillis = 50))
+        textStart.animateTo(targetValue = if (isHere) 72f else 88f, animationSpec = tween(durationMillis = 50))
     }
 
     Text(
@@ -71,6 +74,6 @@ fun PickerText (
         fontSize = textSize.value.sp,
         color = Orange,
         letterSpacing = textSpacing.value.sp,
-        fontWeight = if (isHere) FontWeight.SemiBold else FontWeight.Normal
+        fontWeight = if (isHere) FontWeight.SemiBold else FontWeight.Light
     )
 }

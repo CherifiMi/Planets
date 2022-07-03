@@ -1,5 +1,6 @@
 package com.example.planets
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,10 +18,7 @@ import androidx.compose.ui.unit.sp
 import com.example.planets.ui.theme.Back
 import com.example.planets.ui.theme.Orange
 import com.example.planets.ui.theme.PlanetsTheme
-import dev.chrisbanes.snapper.ExperimentalSnapperApi
-import dev.chrisbanes.snapper.LazyListSnapperLayoutInfo
-import dev.chrisbanes.snapper.rememberLazyListSnapperLayoutInfo
-import dev.chrisbanes.snapper.rememberSnapperFlingBehavior
+import dev.chrisbanes.snapper.*
 
 val pList = listOf(
     "",
@@ -36,6 +34,7 @@ val pList = listOf(
     "SATURN",
     "URANUS",
     "NEPTUNE",
+    "",
     "",
     "",
     "",
@@ -116,17 +115,21 @@ fun PICK() {
                 modifier = Modifier
                     .fillMaxSize(),
                 state = lazyListState,
-                flingBehavior = rememberSnapperFlingBehavior(lazyListState),
+                flingBehavior = rememberSnapperFlingBehavior(
+                    lazyListState = lazyListState,
+                    snapOffsetForItem = SnapOffsets.Center
+                ),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.Center
             ) {
                 itemsIndexed(pList){index, item->
                     PickerText(
                         text = item,
-                        current = layoutInfo.currentItem?.index,
+                        current = layoutInfo.currentItem,
                         index = index
                     )
                 }
+
             }
             Box(
                 contentAlignment = Alignment.CenterEnd,
