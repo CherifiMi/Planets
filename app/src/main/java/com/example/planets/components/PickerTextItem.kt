@@ -1,4 +1,4 @@
-package com.example.planets
+package com.example.planets.components
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -22,19 +22,18 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun PickerText (
+fun PickerTextItem (
     text: String,
-    current: SnapperLayoutItemInfo?,
+    current: Int?,
     index: Int
 ){
-    val isHere = current?.index == index
+    val isHere = current == index
 
     val textSize = remember {
         Animatable(
             if (isHere) 28f else 17f
         )
     }
-
     val textSpacing = remember {
         Animatable(
             if (isHere) 4f else 2f
