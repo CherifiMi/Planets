@@ -11,6 +11,19 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.planets.ui.theme.Back
 import com.example.planets.ui.theme.PlanetsTheme
 import androidx.core.view.WindowInsetsControllerCompat
+import com.example.planets.screens.PICK
+
+//___________________Global values
+val pList = listOf(
+    "MERCURY",
+    "VENUS",
+    "EARTH",
+    "MARS",
+    "JUPITER",
+    "SATURN",
+    "URANUS",
+    "NEPTUNE",
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
