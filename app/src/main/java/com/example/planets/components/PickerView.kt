@@ -1,5 +1,7 @@
 package com.example.planets.components
 
+import android.util.Log
+import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,8 +27,8 @@ fun ColumnScope.PickerView() {
     //___________________values
     val lazyListState: LazyListState = rememberLazyListState()
     val layoutInfo: LazyListSnapperLayoutInfo = rememberLazyListSnapperLayoutInfo(lazyListState)
-    val contentPadding = PaddingValues(top = 300.dp, bottom = 280.dp)
-    val MaxItemFling = 3
+    val contentPadding = PaddingValues(top = 390.dp, bottom = 240.dp)
+    val MaxItemFling = 5
 
     // _________________Items picker snapper
     Box(
@@ -41,19 +43,20 @@ fun ColumnScope.PickerView() {
             flingBehavior = rememberSnapperFlingBehavior(
                 snapOffsetForItem = SnapOffsets.Start,
                 lazyListState = lazyListState,
-                endContentPadding = contentPadding.calculateEndPadding(LayoutDirection.Ltr),
+                endContentPadding = contentPadding.calculateBottomPadding(),
                 snapIndex = { layoutInfo, startIndex, targetIndex ->
                     targetIndex.coerceIn(startIndex - MaxItemFling, startIndex + MaxItemFling)
                 }
-                ),
+            ),
             horizontalAlignment = Alignment.Start,
             contentPadding = contentPadding,
             state = lazyListState
-        ) {
+
+        ){
             itemsIndexed(pList){ index, item->
                 PickerTextItem(
                     text = item,
-                    current = if (!lazyListState.isScrollInProgress) layoutInfo.currentItem?.index else 0,
+                    current =  layoutInfo.currentItem?.index,
                     index = index
                 )
             }
