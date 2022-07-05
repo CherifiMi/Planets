@@ -28,7 +28,7 @@ fun ColumnScope.PickerView() {
     val lazyListState: LazyListState = rememberLazyListState()
     val layoutInfo: LazyListSnapperLayoutInfo = rememberLazyListSnapperLayoutInfo(lazyListState)
     val contentPadding = PaddingValues(top = 390.dp, bottom = 240.dp)
-    val MaxItemFling = 5
+    val MaxItemFling = 3
 
     // _________________Items picker snapper
     Box(
