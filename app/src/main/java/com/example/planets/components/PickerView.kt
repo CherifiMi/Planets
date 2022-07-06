@@ -8,10 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -20,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.example.planets.R
 import com.example.planets.pList
 import dev.chrisbanes.snapper.*
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalSnapperApi::class)
 @Composable
@@ -91,12 +89,12 @@ fun ColumnScope.PickerView() {
             }
         }
         //___________shadow top and bottom
-        Column(
+        /*Column(
             Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Image(painter = painterResource(id = R.drawable.shadow_btm), contentDescription = "")
             Image(painter = painterResource(id = R.drawable.shadow_top), modifier = Modifier.offset(y = 2.dp), contentDescription = "")
-        }
+        }*/
     }
 }
