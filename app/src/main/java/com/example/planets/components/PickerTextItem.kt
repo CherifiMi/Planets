@@ -38,8 +38,8 @@ fun PickerTextItem(
             .fillMaxWidth()
             .offset(y = (-152).dp)
             .height(if (isHere) 144.dp else 48.dp)
-            .background(if (isHere) Color.Black else Color.Blue)
-            .border(2.dp, Color.White)
+            //.background(if (isHere) Color.Black else Color.Blue)
+            //.border(2.dp, Color.White)
     ){
         _PickerTextItem(text = text, current = current, index = index)
     }
