@@ -3,6 +3,7 @@ package com.example.planets.components
 import android.util.Log
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
@@ -11,6 +12,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
@@ -25,7 +27,7 @@ fun ColumnScope.PickerView() {
     //___________________values
     val lazyListState: LazyListState = rememberLazyListState()
     val layoutInfo: LazyListSnapperLayoutInfo = rememberLazyListSnapperLayoutInfo(lazyListState)
-    val contentPadding = PaddingValues(top = 390.dp, bottom = 240.dp)
+    val contentPadding = PaddingValues(top = 390.dp, bottom = 100.dp)
     val MaxItemFling = 3
 
     // _________________Items picker snapper
@@ -89,12 +91,12 @@ fun ColumnScope.PickerView() {
             }
         }
         //___________shadow top and bottom
-        /*Column(
+        Column(
             Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Image(painter = painterResource(id = R.drawable.shadow_btm), contentDescription = "")
             Image(painter = painterResource(id = R.drawable.shadow_top), modifier = Modifier.offset(y = 2.dp), contentDescription = "")
-        }*/
+        }
     }
 }
